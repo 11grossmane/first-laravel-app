@@ -16,17 +16,26 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-// $db->exec("CREATE TABLE items(id INTEGER PRIMARY KEY, name TEXT)");
-// $db->exec("INSERT INTO items(name) VALUES('Name 1')");
-// $db->exec("INSERT INTO items(name) VALUES('Name 10')");
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+class A
+{
+    public $cat = "d";
+}
 
-
-Route::get('/', function () {
-
+Route::get('/items', function () {
     $result = DB::select('select * from items');
-    $r = ini_get('error_log');
+    $ar = [new A, new A];
+    foreach ($ar as $thing) {
+        echo $thing->cat;
+    }
+    foreach ($result as $item) {
+        print_r($item);
+        echo $item->name;
+    }
     Log::info("gelfsdf");
-    error_log('Some message here.');
     Log::debug('Something happened!');
-    return;
+    return $ar;
+    // return view('items', ["items" => $result]);
 });
